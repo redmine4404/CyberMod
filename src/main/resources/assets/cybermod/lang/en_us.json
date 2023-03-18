@@ -1,0 +1,23 @@
+{
+  "item.cybermod.redminite_pickaxe": "Redminite pickaxe",
+  "item.cybermod.redminite" : "Redminite Crystal",
+  "item.cybermod.redminite_sword" : "Redminite Sword",
+  "item.cybermod.hearth" : "hearth",
+  "item.cybermod.god_item" : "God item",
+  "item.cybermod.compressed_iron_ingot" :  "Compressed Iron Ingot",
+  "item.cybermod.cheese" :  "cheese",
+
+  "item.cybermod.compressed_iron_pickaxe" :  "Compressed Iron Pickaxe",
+  "item.cybermod.compressed_iron_sword" :  "Compressed Iron Sword",
+  "item.cybermod.compressed_iron_shovel" :  "Compressed Iron Shovel",
+  "item.cybermod.compressed_iron_axe" :  "Compressed Iron Axe",
+
+  "item.cybermod.compressed_iron_boot" : "Commpressed Iron Boot",
+  "item.cybermod.compressed_iron_legging" : "Commpressed Iron Legging",
+  "item.cybermod.compressed_iron_chestplate" : "Commpressed Iron Chestplate",
+  "item.cybermod.compressed_iron_helmet" : "Commpressed Iron Helmet",
+
+  "itemGroup.CyberTab" : "CyberMod Item Tab",
+
+  "effect.cybermod.heaviness" : "Heaviness"
+}
