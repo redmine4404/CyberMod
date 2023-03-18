@@ -19,7 +19,7 @@ public class SimplChannel {
     public static void setupNetwork(){
         int index = 0;
         //INSTANCE.registerMessage(index++, TestPacket.class, TestPacket::encode, TestPacket::decode, TestPacket::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        INSTANCE.registerMessage(index++, .class, TestPacket::encode, TestPacket::decode, TestPacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        INSTANCE.registerMessage(index++, DisplayItem.class, DisplayItem::encode, DisplayItem::decode, DisplayItem::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
 
     }
 }
