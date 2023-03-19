@@ -12,7 +12,7 @@ public class DisplayItem {
     ItemStack itemStack;
 
     public DisplayItem(ItemStack itemStack){
-
+        this.itemStack = itemStack;
     }
 
     public static void encode(DisplayItem packet, PacketBuffer packetBuffer) {
