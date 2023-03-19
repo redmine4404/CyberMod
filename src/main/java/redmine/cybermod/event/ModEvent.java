@@ -33,6 +33,7 @@ import net.minecraftforge.fml.common.Mod;
 import redmine.cybermod.Item.ItemRegister;
 import redmine.cybermod.Item.ModArmorTiers;
 import redmine.cybermod.commands.addModifier;
+import redmine.cybermod.commands.displayItemCommand;
 import redmine.cybermod.commands.setModifier;
 import redmine.cybermod.effect.ModEffect;
 import redmine.cybermod.utils.ArmorEffectUtils;
@@ -92,6 +93,7 @@ public class ModEvent {
     public static void onCommandRegister(RegisterCommandsEvent event) {
         new addModifier(event.getDispatcher());
         new setModifier(event.getDispatcher());
+        new displayItemCommand(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 
