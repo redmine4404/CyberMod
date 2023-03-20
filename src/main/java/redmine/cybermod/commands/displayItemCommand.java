@@ -31,9 +31,7 @@ public class displayItemCommand {
     }
 
     public int displayItem(CommandSource source, ServerPlayerEntity playerEntity, ItemInput item) throws CommandSyntaxException{
-
             SimplChannel.INSTANCE.send(PacketDistributor.PLAYER.with(() -> playerEntity), new DisplayItem(new ItemStack(item.getItem())));
-            e.printStackTrace();
         return 1;
     }
 
