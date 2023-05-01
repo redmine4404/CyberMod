@@ -1,45 +1,36 @@
 package redmine.cybermod.event;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.screen.CustomMainMenu;
-import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import net.minecraft.client.gui.screen.MainMenuScreen;
+
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Hand;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import redmine.cybermod.CyberMod;
-import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import redmine.cybermod.Item.ItemRegister;
-import redmine.cybermod.Item.ModArmorTiers;
 import redmine.cybermod.commands.addModifier;
 import redmine.cybermod.commands.displayItemCommand;
 import redmine.cybermod.commands.setModifier;
 import redmine.cybermod.effect.ModEffect;
+import redmine.cybermod.gui.CustomMainMenu;
 import redmine.cybermod.utils.ArmorEffectUtils;
 import redmine.cybermod.utils.Reference;
-
-import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.ARMOR;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModEvent {
@@ -47,6 +38,7 @@ public class ModEvent {
     private static final Logger LOGGER = LogManager.getLogger();
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     public static void OnOpenGuiEvent(GuiOpenEvent event) {
         if (event.getGui() != null) {
             if (event.getGui().getClass() == MainMenuScreen.class) {

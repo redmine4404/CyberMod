@@ -1,4 +1,4 @@
-package net.minecraft.client.gui.screen;
+package redmine.cybermod.gui;
 
 import com.google.common.util.concurrent.Runnables;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -11,6 +11,7 @@ import java.util.concurrent.Executor;
 import javax.annotation.Nullable;
 import net.minecraft.client.gui.AccessibilityScreen;
 import net.minecraft.client.gui.DialogTexts;
+import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.toasts.SystemToast;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
@@ -155,7 +156,6 @@ public class CustomMainMenu extends Screen {
 
         if(Reference.CybercraftOrMultiplayer){
             (this.addButton(new Button(this.width / 2 - 100, yIn+ rowHeightIn * 1, 200, 20, new StringTextComponent("Connect to cybercraft"), (p_213095_1_) -> {
-                System.out.println("truc");
                 ServerData serverData = new ServerData( "CyberCraft",Reference.ServerIP + ":" + Reference.ServerPORT, false);
                 this.minecraft.displayGuiScreen(new ConnectingScreen(this, this.minecraft, serverData)); }))).active = true;
         }else {

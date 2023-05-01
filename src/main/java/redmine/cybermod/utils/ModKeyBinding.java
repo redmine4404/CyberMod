@@ -17,12 +17,4 @@ public class ModKeyBinding {
     public static void register(){
         ClientRegistry.registerKeyBinding(TEST_KEY);
     }
-
-    @OnlyIn(Dist.CLIENT)
-    @SubscribeEvent
-    public static void onKeyPress(InputEvent.KeyInputEvent e){
-        if(TEST_KEY.isKeyDown()) {
-            SimplChannel.INSTANCE.sendToServer(new TestPacket(String.valueOf(System.currentTimeMillis())));
-        }
-    }
 }
