@@ -37,7 +37,7 @@ public class ItemRegister {
     //public static final RegistryObject<Item> CompressedIronTest = ITEM_DEFERRED_REGISTER.register("compressed_iron_test", () -> new AxeItem(ModItemTiers.CompressedIron, 5, 1F, new Item.Properties().group(CyberTab.CyberTab)));
 
     public static final RegistryObject<Item> cheese = ITEM_DEFERRED_REGISTER.register("cheese", () -> new CheeseItem());
-    public static final RegistryObject<Item> chause = ITEM_DEFERRED_REGISTER.register("chausse", () -> new Item());
+    public static final RegistryObject<Item> chause = ITEM_DEFERRED_REGISTER.register("chausse", () -> new Item(new Item.Properties()));
 
 
     public static final RegistryObject<Item> CompressedIronBoot = ITEM_DEFERRED_REGISTER.register("compressed_iron_boot",

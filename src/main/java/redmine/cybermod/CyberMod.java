@@ -28,7 +28,9 @@ import redmine.cybermod.Item.upgrade.Upgrader;
 import redmine.cybermod.effect.ModEffect;
 import redmine.cybermod.event.OverlayHandler;
 import redmine.cybermod.network.SimplChannel;
+import redmine.cybermod.particle.ModParticles;
 import redmine.cybermod.utils.ModKeyBinding;
+import redmine.cybermod.utils.ModSoundEvent;
 import redmine.cybermod.utils.Reference;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -54,6 +56,8 @@ public class CyberMod {
         MinecraftForge.EVENT_BUS.register(this);
         ItemRegister.ITEM_DEFERRED_REGISTER.register(eventBus);
         ModEffect.register(eventBus);
+        ModSoundEvent.register(eventBus);
+        ModParticles.register(eventBus);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
@@ -75,7 +79,7 @@ public class CyberMod {
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
         ModKeyBinding.register();
-        bus.addListener(ModKeyBinding::onKeyPress);
+       // bus.addListener(ModKeyBinding::onKeyPress);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
