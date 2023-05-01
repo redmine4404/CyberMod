@@ -1,0 +1,9 @@
+{
+  "chause" : {
+    "category" : "random",
+    "subtitle": "cybermod.chause",
+    "sounds": [
+      "cybermod:chause"
+    ]
+  }
+}
