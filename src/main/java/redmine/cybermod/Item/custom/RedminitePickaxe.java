@@ -59,10 +59,8 @@ public class RedminitePickaxe extends PickaxeItem {
         return super.use(worldIn, playerIn, handIn);
     }
 
-
     @Override
     public float getDestroySpeed(ItemStack itemStack, BlockState blockState) {
-        System.out.println(Upgrader.speedUpgrade.getEfficencyByLevel(Upgrader.getupgradeValue(itemStack, 2)));
         return super.getDestroySpeed(itemStack, blockState) + Upgrader.speedUpgrade.getEfficencyByLevel(Upgrader.getupgradeValue(itemStack, 2));
     }
 }

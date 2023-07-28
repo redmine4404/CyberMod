@@ -114,17 +114,6 @@ public class Upgrader {
             }
         }
 
-        if(getUpgrade(itemStack, 3)[0] == idUpgrade){
-            if(getUpgrade(itemStack, 3)[1] < level){
-                setUpgrade(itemStack, 1,idUpgrade, level);
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-
-
         if (getEmptySlot(itemStack) != 0){
             setUpgrade(itemStack, getEmptySlot(itemStack), idUpgrade, level);
             return itemStack;
