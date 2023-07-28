@@ -50,7 +50,7 @@ public class RedminitePickaxe extends PickaxeItem {
         ItemStack stack = playerIn.getItemInHand(handIn);
         IUpgrade upgradeList[] = Upgrader.getAllClassUpgrade(stack);
 
-        for (Upgrade upgrade : upgradeList) {
+        for (IUpgrade upgrade : upgradeList) {
             if (upgrade != null) {
                 upgrade.use(playerIn, stack);
             }
