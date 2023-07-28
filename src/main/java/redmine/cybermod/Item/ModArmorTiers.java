@@ -60,8 +60,8 @@ public enum ModArmorTiers implements IArmorMaterial {
         return this.soundEvent;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 
     @OnlyIn(Dist.CLIENT)

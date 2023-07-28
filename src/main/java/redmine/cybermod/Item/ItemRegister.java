@@ -41,14 +41,14 @@ public class ItemRegister {
 
 
     public static final RegistryObject<Item> CompressedIronBoot = ITEM_DEFERRED_REGISTER.register("compressed_iron_boot",
-            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.FEET, new Item.Properties().group(CyberTab.CyberTab)));
+            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.FEET, new Item.Properties().tab(CyberTab.CyberTab)));
 
     public static final RegistryObject<Item> CompressedIronLegging = ITEM_DEFERRED_REGISTER.register("compressed_iron_leggings",
-            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.LEGS, new Item.Properties().group(CyberTab.CyberTab)));
+            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.LEGS, new Item.Properties().tab(CyberTab.CyberTab)));
 
     public static final RegistryObject<Item> CompressedIronChestplate = ITEM_DEFERRED_REGISTER.register("compressed_iron_chestplate",
-            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.CHEST, new Item.Properties().group(CyberTab.CyberTab)));
+            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.CHEST, new Item.Properties().tab(CyberTab.CyberTab)));
 
     public static final RegistryObject<Item> CompressedIronHelmet = ITEM_DEFERRED_REGISTER.register("compressed_iron_helmet",
-            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.HEAD, new Item.Properties().group(CyberTab.CyberTab)));
+            () -> new ArmorItem(ModArmorTiers.CompressedIron, EquipmentSlotType.HEAD, new Item.Properties().tab(CyberTab.CyberTab)));
 }

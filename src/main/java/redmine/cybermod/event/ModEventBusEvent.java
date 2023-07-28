@@ -14,6 +14,6 @@ public class ModEventBusEvent {
 
     @SubscribeEvent
     public static void registerParticleFactories(final ParticleFactoryRegisterEvent event){
-        Minecraft.getInstance().particles.registerFactory(ModParticles.CHAUSE_PARTICLE.get(), ChauseParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.CHAUSE_PARTICLE.get(), ChauseParticle.Factory::new);
     }
 }
