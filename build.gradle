@@ -1,16 +1,28 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.parchmentmc.org' } // parchmentmc mapping
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' } //mixin
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+        }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
 
 version = '1.0'
 group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -31,7 +43,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: '20210309-1.16.5'
+    mappings channel: 'parchment', version: '2022.03.06-1.16.5'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -48,6 +60,8 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             // Recommended logging level for the console
             // You can set various levels here.
@@ -70,7 +84,8 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
@@ -118,6 +133,12 @@ repositories {
         url "https://cursemaven.com"
     }
 }
+
+repositories {
+    maven {
+        url = "https://api.modrinth.com/maven"
+    }
+}
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
@@ -126,7 +147,14 @@ dependencies {
 
     runtimeOnly fg.deobf("curse.maven:overloadedarmorbar-314002:3055679") //Overloaded armor bar
     runtimeOnly fg.deobf("curse.maven:appleskin-248787:3626709") //Apple Skin
-    runtimeOnly fg.deobf("curse.maven:smooth-boot-forge-420913:3224252") //Smooth boot
+    runtimeOnly fg.deobf("curse.maven:jei-238222:4060770") // Jei
+    runtimeOnly fg.deobf("curse.maven:now-playing-399292:3107854") // NowPlaying
+    runtimeOnly fg.deobf("curse.maven:configured-457570:3434071") //
+    runtimeOnly fg.deobf("curse.maven:rubidium-574856:4568759") //
+    runtimeOnly fg.deobf("curse.maven:lazy-dfu-forge-460819:3249059") //
+    runtimeOnly fg.deobf("maven.modrinth:ferrite-core:6gwDuh90") //
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -149,6 +177,7 @@ dependencies {
 
 }
 
+
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
@@ -164,11 +193,13 @@ jar {
     }
 }
 
+
 // Example configuration to allow publishing using the maven-publish task
 // This is the preferred method to reobfuscate your jar file
 jar.finalizedBy('reobfJar') 
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
+
 
 publishing {
     publications {
