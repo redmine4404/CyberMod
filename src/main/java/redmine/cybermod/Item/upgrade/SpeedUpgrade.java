@@ -3,7 +3,7 @@ package redmine.cybermod.Item.upgrade;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
-public class SpeedUpgrade extends Upgrade{
+public class SpeedUpgrade implements IUpgrade{
     public String getName() {
         return "Speed upgrade";
     }

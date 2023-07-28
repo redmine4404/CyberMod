@@ -7,10 +7,11 @@ import net.minecraft.util.text.TextFormatting;
 
 public class TestUpgrade extends Upgrade{
 
-    @Override
-    public String getName() {
-        return "Test upgrade";
-    }
+public class TestUpgrade implements IUpgrade {
+     @Override
+     public String getName() {
+          return "Test Upgrade";
+     }
 
     @Override
     public int getId(){

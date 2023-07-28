@@ -17,7 +17,7 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import redmine.cybermod.Item.upgrade.Upgrade;
+import redmine.cybermod.Item.upgrade.IUpgrade;
 import redmine.cybermod.Item.upgrade.Upgrader;
 
 import javax.annotation.Nullable;

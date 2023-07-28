@@ -166,7 +166,7 @@ public class Upgrader {
         }
     }
 
-    public static Upgrade getClassUpgrade(int id){
+    public static IUpgrade getClassUpgrade(int id){
         switch (id){
             case 1 : return new TestUpgrade();
             case 2 : return new SpeedUpgrade();
@@ -174,9 +174,9 @@ public class Upgrader {
         }
     }
 
-    public static Upgrade[] getAllClassUpgrade(ItemStack itemStack)
+    public static IUpgrade[] getAllClassUpgrade(ItemStack itemStack)
     {
-        Upgrade[] upgradeClass = new Upgrade[3];
+        IUpgrade[] upgradeClass = new IUpgrade[3];
         CompoundNBT nbt = itemStack.getTag();
 
         upgradeClass[0] = getClassUpgrade(nbt.getIntArray("Upgrade1")[0]);
