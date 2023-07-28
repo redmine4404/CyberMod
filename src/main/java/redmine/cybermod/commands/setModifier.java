@@ -25,7 +25,7 @@ public class setModifier {
 
             if(source.getEntity() instanceof PlayerEntity){
                 PlayerEntity player = (PlayerEntity) source.getEntity();
-                ItemStack itemStack = player.inventory.getCurrentItem();
+                ItemStack itemStack = player.inventory.getSelected();
 
                 if(Upgrader.setUpgrade(itemStack, IntegerArgumentType.getInteger(context, "placeOnList"), IntegerArgumentType.getInteger(context, "upgradeId"), IntegerArgumentType.getInteger(context, "level") ) == 1){
                     player.sendMessage(new StringTextComponent("modifier rajouter"), null);
@@ -37,7 +37,7 @@ public class setModifier {
                 }
 
             } else {
-                source.sendFeedback(new StringTextComponent("the command addModifier can be send only by a player!"), true);
+                source.sendFailure(new StringTextComponent("the command addModifier can be send only by a player!"));
                 return 0;
             }
         }

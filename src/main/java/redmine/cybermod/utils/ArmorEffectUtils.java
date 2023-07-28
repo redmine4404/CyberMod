@@ -28,7 +28,7 @@ public class ArmorEffectUtils {
     public static void deValidArmor(NonNullList<ItemStack> itemStacks){
         for (ItemStack itemStack : itemStacks){
             if(itemStack != null && itemStack.getItem() instanceof ArmorItem){
-                if(((ArmorItem) itemStack.getItem()).getArmorMaterial() == ModArmorTiers.CompressedIron){
+                if(((ArmorItem) itemStack.getItem()).getMaterial() == ModArmorTiers.CompressedIron){
                     checkNBT(itemStack.getTag());
        //             System.out.println("devalid armor :" + itemStack);
 

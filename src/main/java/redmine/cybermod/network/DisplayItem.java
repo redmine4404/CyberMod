@@ -20,7 +20,7 @@ public class DisplayItem {
     }
 
     public static DisplayItem decode(PacketBuffer packetBuffer) {
-        return new DisplayItem(packetBuffer.readItemStack());
+        return new DisplayItem(packetBuffer.readItem());
     }
 
     public static void handle(DisplayItem packet, Supplier<NetworkEvent.Context> ctx) {

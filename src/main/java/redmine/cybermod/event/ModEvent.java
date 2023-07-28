@@ -70,9 +70,9 @@ public class ModEvent {
                 PlayerEntity player = event.getPlayer();
                 ItemStack item = event.getItemStack();
 
-                player.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 5, 256));
-                player.getFoodStats().setFoodLevel(40);
-                player.getFoodStats().setFoodSaturationLevel(40);
+                player.addEffect(new EffectInstance(Effects.HEAL, 5, 256));
+                player.getFoodData().setFoodLevel(40);
+                player.getFoodData().setSaturation(40);
 
                 item.setCount(item.getCount() - 1);
                 }
@@ -99,7 +99,7 @@ public class ModEvent {
 
     @SubscribeEvent
     public static void onEffectEnd(PotionEvent.PotionExpiryEvent event) {
-        if(event.getPotionEffect().getPotion() == ModEffect.Heaviness.get()){
+        if(event.getPotionEffect().getEffect() == ModEffect.Heaviness.get()){
             if(event.getEntityLiving() instanceof PlayerEntity) ArmorEffectUtils.update((PlayerEntity) event.getEntityLiving());
         }
     }

@@ -30,7 +30,8 @@ public class RedminitePickaxe extends PickaxeItem {
     }
 
     @Override
-    public void addInformation(ItemStack item, @Nullable World world, List<ITextComponent> text, ITooltipFlag p_77624_4_) {
+    public void appendHoverText(ItemStack item, @Nullable World pLevel, List<ITextComponent> text, ITooltipFlag pFlag) {
+        super.appendHoverText(item, pLevel, text, pFlag);
         if (Upgrader.getUpgrade(item, 1)[0] != 0) {
             text.add(new StringTextComponent(TextFormatting.GRAY + "Modifier 1 : " + TextFormatting.WHITE + Upgrader.getNameOfModifier(Upgrader.getUpgrade(item, 1)[0]) + " " + new TranslationTextComponent("enchantment.level." + Upgrader.getUpgrade(item, 1)[1]).getString()));
         }
@@ -44,11 +45,10 @@ public class RedminitePickaxe extends PickaxeItem {
 
     @Override
     @OnlyIn(Dist.DEDICATED_SERVER)
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        System.out.println("trucd");
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         //if(!worldIn.isRemote){
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        Upgrade upgradeList[] = Upgrader.getAllClassUpgrade(stack);
+        ItemStack stack = playerIn.getItemInHand(handIn);
+        IUpgrade upgradeList[] = Upgrader.getAllClassUpgrade(stack);
 
         for (Upgrade upgrade : upgradeList) {
             if (upgrade != null) {
@@ -56,7 +56,7 @@ public class RedminitePickaxe extends PickaxeItem {
             }
         }
         // }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(worldIn, playerIn, handIn);
     }
 
 

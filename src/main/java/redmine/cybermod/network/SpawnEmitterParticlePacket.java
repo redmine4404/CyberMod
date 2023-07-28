@@ -33,7 +33,12 @@ public class SpawnEmitterParticlePacket {
     }
 
     public static void handle(SpawnEmitterParticlePacket packet, Supplier<NetworkEvent.Context> ctx) {
-        Minecraft.getInstance().particles.emitParticleAtEntity(Minecraft.getInstance().player, (IParticleData) ForgeRegistries.PARTICLE_TYPES.getValue(packet.resourceLocation), 30);
+        handle2(packet, ctx);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void handle2(SpawnEmitterParticlePacket packet, Supplier<NetworkEvent.Context> ctx){
+        Minecraft.getInstance().particleEngine.createTrackingEmitter(Minecraft.getInstance().player, (IParticleData) ForgeRegistries.PARTICLE_TYPES.getValue(packet.resourceLocation), 30);
     }
 
 }

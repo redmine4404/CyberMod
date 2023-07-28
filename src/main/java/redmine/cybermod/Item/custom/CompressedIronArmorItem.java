@@ -23,8 +23,8 @@ public class CompressedIronArmorItem extends ArmorItem {
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        if(!world.isRemote()) {
-            player.addPotionEffect(new EffectInstance(ModEffect.Heaviness.get(), 20, getAmplifierWithArmor(player)));
+        if(!world.isClientSide()) {
+            player.addEffect(new EffectInstance(ModEffect.Heaviness.get(), 20, getAmplifierWithArmor(player)));
         }
         super.onArmorTick(stack, world, player);
     }
@@ -32,7 +32,7 @@ public class CompressedIronArmorItem extends ArmorItem {
     public int getAmplifierWithArmor(PlayerEntity player){
 
         int i = 0;
-        NonNullList<ItemStack> itemStacks =  player.inventory.armorInventory;
+        NonNullList<ItemStack> itemStacks =  player.inventory.armor;
 
         if(itemStacks.get(0).getItem() == ItemRegister.CompressedIronBoot.get()){
             i++;

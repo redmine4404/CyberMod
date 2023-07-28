@@ -33,31 +33,31 @@ import redmine.cybermod.utils.ModSoundEvent;
 
 public class CheeseItem extends Item {
     public CheeseItem() {
-        super(new Properties().group(CyberTab.CyberTab).maxStackSize(8).food(new Food.Builder().fastToEat().hunger(1).saturation(0.5F).meat().build()));
+        super(new Properties().tab(CyberTab.CyberTab).stacksTo(8).food(new Food.Builder().fast().nutrition(1).saturationMod(0.5F).meat().build()));
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-
+    public ItemStack finishUsingItem(ItemStack itemStack, World worldIn, LivingEntity entityLiving) {
+        ItemStack stack = super.finishUsingItem(itemStack, worldIn, entityLiving);
         if(entityLiving instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) entityLiving;
 
             if(worldIn.getRandom().nextInt(4) == 0){
             SimplChannel.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayerEntity), new DisplayItem(new ItemStack(ItemRegister.chause.get())));
             SimplChannel.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayerEntity), new SpawnEmitterParticlePacket(ModParticles.CHAUSE_PARTICLE.getId()));
-            serverPlayerEntity.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 1));
-            serverPlayerEntity.addPotionEffect(new EffectInstance(Effects.SATURATION, 200, 2));
-            serverPlayerEntity.addPotionEffect(new EffectInstance(Effects.STRENGTH, 600, 1));
-            serverPlayerEntity.playSound(ModSoundEvent.chause.get(), SoundCategory.MASTER, 100, 1F);
-            serverPlayerEntity.getFoodStats().addStats(4, 2.0F);
-            return this.isFood() ? entityLiving.onFoodEaten(worldIn, stack) : stack;
+            serverPlayerEntity.addEffect(new EffectInstance(Effects.REGENERATION, 200, 1));
+            serverPlayerEntity.addEffect(new EffectInstance(Effects.SATURATION, 200, 2));
+            serverPlayerEntity.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 600, 1));
+            serverPlayerEntity.playNotifySound(ModSoundEvent.chause.get(), SoundCategory.MASTER, 100, 1F);
+            serverPlayerEntity.getFoodData().eat(4, 2.0F);
+            return stack;
             }
 
             if(worldIn.getRandom().nextInt(6) == 0){
-                serverPlayerEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 200, 1));
-                serverPlayerEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 1));
+                serverPlayerEntity.addEffect(new EffectInstance(Effects.CONFUSION, 200, 1));
+                serverPlayerEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 200, 1));
             }
         }
-        return this.isFood() ? entityLiving.onFoodEaten(worldIn, stack) : stack;
+        return stack;
     }
 }

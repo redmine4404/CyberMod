@@ -9,7 +9,7 @@ public class CyberTab {
 
     public static final ItemGroup CyberTab = new ItemGroup("CyberTab") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(ItemRegister.Redminite.get());
 
         }

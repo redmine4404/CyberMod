@@ -9,16 +9,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ChauseParticle extends SimpleAnimatedParticle {
     public ChauseParticle(ClientWorld world, double x, double y, double z, double motionX, double motionY, double motionZ, IAnimatedSprite spriteWithAge) {
         super(world, x, y, z, spriteWithAge, -0.05F);
-        this.motionX = motionX;
-        this.motionY = motionY;
-        this.motionZ = motionZ;
-        this.particleScale *= 0.75F;
-        this.maxAge = 60 + this.rand.nextInt(12);
-        this.selectSpriteWithAge(spriteWithAge);
-        if (this.rand.nextInt(4) == 0) {
-            this.setColor(0.6F + this.rand.nextFloat() * 0.3F, 0.6F + this.rand.nextFloat() * 0.2F, this.rand.nextFloat() * 0.2F);
+        this.xd = motionX;
+        this.yd = motionY;
+        this.zd = motionZ;
+        this.quadSize *= 0.75F;
+        this.lifetime = 60 + this.random.nextInt(12);
+        this.setSpriteFromAge(spriteWithAge);
+        if (this.random.nextInt(4) == 0) {
+            this.setColor(0.6F + this.random.nextFloat() * 0.3F, 0.6F + this.random.nextFloat() * 0.2F, this.random.nextFloat() * 0.2F);
         } else {
-            this.setColor(0.4F + this.rand.nextFloat() * 0.3F, 0.1F + this.rand.nextFloat() * 0.2F, this.rand.nextFloat() * 0.2F);
+            this.setColor(0.4F + this.random.nextFloat() * 0.3F, 0.1F + this.random.nextFloat() * 0.2F, this.random.nextFloat() * 0.2F);
         }
 
         this.setBaseAirFriction(0.6F);

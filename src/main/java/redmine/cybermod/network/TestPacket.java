@@ -14,11 +14,11 @@ public class TestPacket {
     }
 
     public static void encode(TestPacket testPacket, PacketBuffer packetBuffer) {
-        packetBuffer.writeString(testPacket.heur);
+        packetBuffer.writeUtf(testPacket.heur);
     }
 
     public static TestPacket decode(PacketBuffer packetBuffer) {
-        String heur = packetBuffer.readString();
+        String heur = packetBuffer.readUtf();
         return new TestPacket(heur);
     }
 
