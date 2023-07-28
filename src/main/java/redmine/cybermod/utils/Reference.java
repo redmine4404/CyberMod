@@ -2,7 +2,7 @@ package redmine.cybermod.utils;
 
 public class Reference {
     public static final String MOD_ID = "cybermod";
-    public static final String version = "0.0";
+    public static final String version = "${mod_version}";
 
     public static final boolean CybercraftOrMultiplayer = false;
     public static final boolean solo = true;

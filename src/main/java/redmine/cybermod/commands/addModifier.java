@@ -32,7 +32,7 @@ public class addModifier {
                 player.sendMessage(new StringTextComponent("bonjour la france"), UUID.randomUUID());
 
 
-                if(Upgrader.addUpgrade(itemStack, IntegerArgumentType.getInteger(context, "upgradeId"), IntegerArgumentType.getInteger(context, "level"))){
+                if(Upgrader.addUpgrade(itemStack, IntegerArgumentType.getInteger(context, "upgradeId"), IntegerArgumentType.getInteger(context, "level")) != null){
             //        player.sendMessage(new StringTextComponent("modifier rajouter"), null);
                     return 1;
 

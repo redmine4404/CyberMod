@@ -28,7 +28,6 @@ public class TestPacket {
 
         String heur = packet.heur;
 
-        playerEntity.sendStatusMessage(new StringTextComponent(heur), true);
 
     }
 }

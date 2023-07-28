@@ -21,7 +21,7 @@ public class Upgrader {
 
     public static void checkNbt(ItemStack itemStack){
 
-        if (!itemStack.getTag().contains("Upgrade1")){
+        if (itemStack.getTag() == null || !itemStack.getTag().contains("Upgrade1")){
             initUpgrade(itemStack);
         }
 
@@ -69,37 +69,31 @@ public class Upgrader {
     public static int getUpgradeSlot(ItemStack itemStack, int upgradeId){
         checkNbt(itemStack);
         CompoundNBT nbt = itemStack.getTag();
-        if(nbt.getIntArray("Upgrade1")[0] == upgradeId){
-            return 1;
-        }else if(nbt.getIntArray("Upgrade2")[0] == upgradeId){
-            return 2;
-        } else if (nbt.getIntArray("Upgrade3")[0] == upgradeId)
-        {
-            return 3;
-        } else {
-            return 0;
+
+        for (int i = 1; i <= 3; i++){
+            if(nbt.getIntArray("Upgrade" + i)[0] == upgradeId){
+                return i;
+            }
         }
+        return 0;
     }
     //if getEmptySlot return 0, there is not free slot
     public static int getEmptySlot(ItemStack itemStack){
         checkNbt(itemStack);
         CompoundNBT nbt = itemStack.getTag();
-        if(nbt.getIntArray("Upgrade1")[0] == 0){
-        return 1;
-       }else if(nbt.getIntArray("Upgrade2")[0] == 0){
-            return 2;
-       } else if (nbt.getIntArray("Upgrade3")[0] == 0)
-        {
-            return 3;
-        } else {
-            return 0;
+        for(int i = 1; i <= 3; i++){
+            if(nbt.getIntArray("Upgrade" + i)[0] == 0){
+                System.out.println(nbt);
+                return i;
+            }
         }
+        return 0;
     }
 
     public static int setUpgrade(ItemStack itemStack, int id, int upgrade, int level){
         checkNbt(itemStack);
-
         CompoundNBT tag = itemStack.getTag();
+
 
     tag.putIntArray("Upgrade" + id, Arrays.asList(upgrade, level));
 
@@ -108,25 +102,15 @@ public class Upgrader {
     }
 
     //add upgrade, if the upgrade already exist but in different level, the new upgrade replace the ancient (only if the newx upgrade is more )
-    public static boolean addUpgrade(ItemStack itemStack, int idUpgrade, int level){
+    public static ItemStack addUpgrade(ItemStack itemStack, int idUpgrade, int level){
         checkNbt(itemStack);
 
-        if(getUpgrade(itemStack, 1)[0] == idUpgrade){
-            if(getUpgrade(itemStack, 1)[1] < level){
-                setUpgrade(itemStack, 1,idUpgrade, level);
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-
-        if(getUpgrade(itemStack, 2)[0] == idUpgrade){
-            if(getUpgrade(itemStack, 2)[1] < level){
-                setUpgrade(itemStack, 2,idUpgrade, level);
-                return true;
-            } else {
-                return false;
+        for (int i = 0;  i <= 3 ;i++){
+            if(getUpgrade(itemStack, i).length != 0 && getUpgrade(itemStack, i)[0] == idUpgrade){
+                if(getUpgrade(itemStack, i)[1] < level){
+                    setUpgrade(itemStack, i,idUpgrade, level);
+                    return itemStack;
+                }
             }
         }
 
@@ -143,11 +127,9 @@ public class Upgrader {
 
         if (getEmptySlot(itemStack) != 0){
             setUpgrade(itemStack, getEmptySlot(itemStack), idUpgrade, level);
-            return true;
-        } else {
-            System.out.println("plus de plaçe dsl ?");
-            return false;
+            return itemStack;
         }
+        return itemStack;
     }
 
     public static String getNameOfModifier(int i){
@@ -156,9 +138,9 @@ public class Upgrader {
             case 0 :
             return "";
 
-            case 1:
-            return testUpgrade.getName();
-
+            case 1: {
+                return testUpgrade.getName();
+            }
             case 2 :
             return speedUpgrade.getName();
 
