@@ -49,12 +49,12 @@ public class ArmorEffectUtils {
     }
 
     public static void update(PlayerEntity player){
-        if(player.isPotionActive(ModEffect.Heaviness.get())) player.removePotionEffect(ModEffect.Heaviness.get());
-        if(calculEffect(player.inventory.armorInventory) == 0) return;
+        if(player.hasEffect(ModEffect.Heaviness.get())) player.removeEffect(ModEffect.Heaviness.get());
+        if(calculEffect(player.inventory.armor) == 0) return;
 
-        EffectInstance effectInstance = new EffectInstance(ModEffect.Heaviness.get(), Integer.MAX_VALUE, calculEffect(player.inventory.armorInventory) - 1);
+        EffectInstance effectInstance = new EffectInstance(ModEffect.Heaviness.get(), Integer.MAX_VALUE, calculEffect(player.inventory.armor) - 1);
 
-        player.addPotionEffect(effectInstance);
+        player.addEffect(effectInstance);
         //System.out.println("truc");
     }
 
@@ -62,7 +62,7 @@ public class ArmorEffectUtils {
         int i = 0;
 
         for (ItemStack itemStack : itemStacks){
-            if(itemStack.getItem() != Items.AIR && ((ArmorItem)itemStack.getItem()).getArmorMaterial() == ModArmorTiers.CompressedIron) i++;
+            if(itemStack.getItem() != Items.AIR && ((ArmorItem)itemStack.getItem()).getMaterial() == ModArmorTiers.CompressedIron) i++;
         }
     //    System.out.println(i);
         return i;
