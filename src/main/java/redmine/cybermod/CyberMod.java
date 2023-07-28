@@ -23,13 +23,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import redmine.cybermod.Item.ItemRegister;
 import redmine.cybermod.Item.upgrade.Upgrader;
+import redmine.cybermod.block.BlockRegister;
+import redmine.cybermod.container.ModContainers;
 import redmine.cybermod.effect.ModEffect;
 import redmine.cybermod.event.OverlayHandler;
+import redmine.cybermod.gui.SmelterBlockScreen;
 import redmine.cybermod.network.SimplChannel;
 import redmine.cybermod.particle.ModParticles;
+import redmine.cybermod.tileentity.ModTileEntities;
 import redmine.cybermod.utils.ModKeyBinding;
 import redmine.cybermod.utils.ModSoundEvent;
 import redmine.cybermod.utils.Reference;
+import redmine.cybermod.utils.SmelterBlockUtil.SmelterBlockCraftRecipe;
+import redmine.cybermod.utils.SmelterBlockUtil.SmelterBlockCraftRecipes;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Reference.MOD_ID)
@@ -53,9 +59,13 @@ public class CyberMod {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         ItemRegister.ITEM_DEFERRED_REGISTER.register(eventBus);
+        BlockRegister.BLOCK_DEFERRED_REGISTER.register(eventBus);
+        BlockRegister.BLOCK_ITEM_DEFERRED_REGISTER.register(eventBus);
         ModEffect.register(eventBus);
         ModSoundEvent.register(eventBus);
         ModParticles.register(eventBus);
+        ModTileEntities.register(eventBus);
+        ModContainers.register(eventBus);
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
@@ -77,6 +87,8 @@ public class CyberMod {
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
         ModKeyBinding.register();
+
+        ScreenManager.register(ModContainers.SMELTER_BLOCK_CONTAINERS.get(), SmelterBlockScreen::new);
        // bus.addListener(ModKeyBinding::onKeyPress);
     }
 

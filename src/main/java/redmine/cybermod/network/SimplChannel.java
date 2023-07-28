@@ -22,6 +22,7 @@ public class SimplChannel {
         //INSTANCE.registerMessage(index++, TestPacket.class, TestPacket::encode, TestPacket::decode, TestPacket::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(index++, DisplayItem.class, DisplayItem::encode, DisplayItem::decode, DisplayItem::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         INSTANCE.registerMessage(index++, SpawnEmitterParticlePacket.class, SpawnEmitterParticlePacket::encode, SpawnEmitterParticlePacket::decode, SpawnEmitterParticlePacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        INSTANCE.registerMessage(index++, SmelterBlockProcessPacket.class, SmelterBlockProcessPacket::encode , SmelterBlockProcessPacket::decode, SmelterBlockProcessPacket::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
 
     }
 }

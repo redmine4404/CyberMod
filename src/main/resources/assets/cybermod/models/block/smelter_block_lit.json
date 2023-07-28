@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures" : {
+    "top" : "cybermod:block/smelter_block_top",
+    "front": "cybermod:block/smelter_block_front_lit",
+    "side" : "cybermod:block/smelter_block_side"
+  }
+}

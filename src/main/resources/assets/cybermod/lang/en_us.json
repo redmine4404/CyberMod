@@ -19,5 +19,9 @@
 
   "itemGroup.CyberTab" : "CyberMod Item Tab",
 
-  "effect.cybermod.heaviness" : "Heaviness"
+  "effect.cybermod.heaviness" : "Heaviness",
+
+  "block.cybermod.test_block": "test block",
+
+  "screen.cybermod.smelter_block": "Smelter Block"
 }

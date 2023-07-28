@@ -27,6 +27,7 @@ import redmine.cybermod.Item.ItemRegister;
 import redmine.cybermod.commands.addModifier;
 import redmine.cybermod.commands.displayItemCommand;
 import redmine.cybermod.commands.setModifier;
+import redmine.cybermod.commands.testCommand;
 import redmine.cybermod.effect.ModEffect;
 import redmine.cybermod.gui.CustomMainMenu;
 import redmine.cybermod.utils.ArmorEffectUtils;
@@ -86,6 +87,7 @@ public class ModEvent {
         new addModifier(event.getDispatcher());
         new setModifier(event.getDispatcher());
         new displayItemCommand(event.getDispatcher());
+        new testCommand(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
     }
 
