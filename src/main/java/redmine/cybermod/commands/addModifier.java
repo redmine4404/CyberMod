@@ -10,8 +10,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
-import org.lwjgl.system.CallbackI;
 import redmine.cybermod.Item.upgrade.Upgrader;
+
+import java.util.UUID;
 
 public class addModifier {
         public addModifier(CommandDispatcher<CommandSource> dispatcher){
@@ -27,8 +28,8 @@ public class addModifier {
 
             if(source.getEntity() instanceof PlayerEntity){
                 PlayerEntity player = (PlayerEntity) source.getEntity();
-                ItemStack itemStack = player.inventory.getCurrentItem();
-                player.sendMessage(new StringTextComponent("bonjour la france"), null);
+                ItemStack itemStack = player.inventory.getSelected();
+                player.sendMessage(new StringTextComponent("bonjour la france"), UUID.randomUUID());
 
 
                 if(Upgrader.addUpgrade(itemStack, IntegerArgumentType.getInteger(context, "upgradeId"), IntegerArgumentType.getInteger(context, "level"))){
